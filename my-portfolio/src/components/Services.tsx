@@ -29,11 +29,6 @@ const SERVICES = [
   },
 ]
 
-const AVAILABILITY = [
-  { label: 'Open to Work',           sub: 'Full-time or part-time roles' },
-  { label: 'Open to Collaborate',    sub: 'Side projects & open source' },
-  { label: 'Available for Freelance', sub: 'Remote · Flexible hours' },
-]
 
 // ── scroll fade hook ───────────────────────────────────
 function useScrollFade(ref: React.RefObject<HTMLElement>, delay = 0) {
