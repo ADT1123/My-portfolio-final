@@ -63,11 +63,11 @@ export const projects: Project[] = [
 
   // ── 2023 ──
   {
-    year: '2022-2023',
+    year: '2023',
     title: 'Discord fun Chatbot',
     description: 'Fun Discord Chatbot for moderation and cool commands which hosted around 20+ servers.',
     tags: ['Node.js', 'MongoDB'],
-    links: { github: 'https://github.com/ADT1123/jarvis.py' },
+    links: { github: 'https://github.com/ADT1123/Timepass-bot' },
   },
 
   // ── 2024 ──
