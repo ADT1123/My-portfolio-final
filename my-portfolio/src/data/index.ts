@@ -91,7 +91,7 @@ export const projects: Project[] = [
   // ── 2026 ──
   {
     year: '2026',
-    title: 'Team Management Software Eka Gifts',
+    title: 'Team Management Software for Eka',
     description: 'A team management and task assessment software to track tasks and meetings. ',
     tags: ['React', 'TypeScript', 'Firebase', 'API Integration'],
     links:{ live: 'https://manage.ekagifts.com' },
