@@ -10,11 +10,14 @@ export interface Skill {
 }
 
 export interface Project {
-  links: any
   year: string
   title: string
   description: string
   tags: string[]
+  links?: {
+    live?: string
+    github?: string
+  }
 }
 
 export interface SocialLink {

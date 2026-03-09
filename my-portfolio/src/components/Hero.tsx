@@ -193,7 +193,7 @@ function AboutContent(): JSX.Element {
       <div data-line style={{ width: '100%', height: 1, background: '#1a1a1a', margin: '1.2rem 0' }} />
       <p data-line style={{ fontFamily: 'monospace', fontSize: '0.72rem', color: '#c0c0c0', lineHeight: 1.8, margin: 0, letterSpacing: '0.04em' }}>
         // git commit -m{' '}
-        <span style={{ color: '#cdfb00' }}>&apos;trying my best&apos;</span>. No cap.
+        <span style={{ color: '#ebff92' }}>&apos;Am Built Different&apos;</span>. No cap.
       </p>
     </div>
   )
@@ -203,7 +203,7 @@ function AboutContent(): JSX.Element {
 function Navbar(): JSX.Element {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const links = ['Work', 'About', 'Services', 'Contact']
+  const links = ['Skills', 'Work', 'Services', 'Contact']
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)

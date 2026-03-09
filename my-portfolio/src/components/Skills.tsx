@@ -11,7 +11,7 @@ const SKILL_SECTIONS = [
     key: 'technical',
     label: 'TECHNICAL SKILLS',
     subheading: 'PROGRAMMING',
-    items: ['C/C++', 'Python', 'JavaScript/TypeScript', 'HTML/CSS'],
+    items: ['C/C++', 'Python', 'JavaScript/TypeScript', 'HTML/CSS','MERN Stack'],
   },
   {
     key: 'frameworks',
@@ -23,13 +23,13 @@ const SKILL_SECTIONS = [
     key: 'tools',
     label: 'TOOLS',
     subheading: 'TOOLS',
-    items: ['MongoDB', 'Git / GitHub', 'Firebase', 'Vercel', 'REST APIs', 'Payment Integration'],
+    items: ['MongoDB', 'Git / GitHub', 'Firebase', 'Vercel', 'REST APIs', 'Google Colab', 'Render' ],
   },
   {
-    key: 'hardware',
-    label: 'HARDWARE',
-    subheading: 'HARDWARE',
-    items: ['UAV/Drone Systems', 'Flight Control', 'MissionPlanner', 'MAVLink', 'Betaflight'],
+    key: 'interests',
+    label: 'Exploring',
+    subheading: 'Currently Learning',
+    items: ['Machine Learning', 'Data Science','Gen AI'],
   },
 ]
 
@@ -232,7 +232,7 @@ export default function Skills(): JSX.Element {
         }}>
           <span style={{
             fontFamily: '"Press Start 2P", monospace',
-            fontSize: 'clamp(0.4rem, 0.8vw, 0.65rem)',
+            fontSize: 'clamp(0.90rem, 0.8vw, 0.65rem)',
             color: '#fff',
             letterSpacing: '0.4em',
             textTransform: 'uppercase',

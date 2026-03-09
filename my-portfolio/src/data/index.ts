@@ -46,70 +46,70 @@ export const projects: Project[] = [
   // ── 2021 ──
   {
     year: '2021',
-    title: 'First Steps',
-    description: 'My first real project — a simple personal blog built while learning HTML, CSS and JavaScript.',
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    links: undefined,
+    title: 'Personal Virtual Assistant - Jarvis (ikik I am Tony Stark)',
+    description: 'My first real project — a simple personal virtual assistant which does basic tasks.',
+    tags: ['Python'],
+    links: { github: 'https://github.com/ADT1123/jarvis.py' },
   },
 
   // ── 2022 ──
   {
     year: '2022',
-    title: 'Portfolio v1',
-    description: 'First React portfolio site. Learned component architecture and basic state management.',
-    tags: ['React', 'CSS Modules'],
-    links: undefined,
+    title: 'Discord Quote Bot',
+    description: 'My first ever discord chat bot.',
+    tags: ['Python'],
+    links: { github: 'https://github.com/ADT1123/Quotes-Bot-coding.git' },
   },
 
   // ── 2023 ──
   {
-    year: '2023',
-    title: 'Weather Dashboard',
-    description: 'Real-time weather app with city search, 7-day forecast and animated charts.',
-    tags: ['React', 'OpenWeather API', 'Chart.js'],
-    links: undefined,
-  },
-  {
-    year: '2023',
-    title: 'Task Flow',
-    description: 'Kanban-style task manager with drag-and-drop, labels, and local persistence.',
-    tags: ['React', 'TypeScript', 'localStorage'],
-    links: undefined,
+    year: '2022-2023',
+    title: 'Discord fun Chatbot',
+    description: 'Fun Discord Chatbot for moderation and cool commands which hosted around 20+ servers.',
+    tags: ['Node.js', 'MongoDB'],
+    links: { github: 'https://github.com/ADT1123/jarvis.py' },
   },
 
   // ── 2024 ──
-  {
-    year: '2024',
-    title: 'Project Gamma',
-    description: 'An AI-powered content generator with a clean minimal dashboard.',
-    tags: ['Python', 'FastAPI', 'React'],
-    links: undefined,
-  },
 
   // ── 2025 ──
   {
     year: '2025',
-    title: 'Project Alpha',
-    description: 'A real-time collaborative tool built with React and WebSockets.',
-    tags: ['React', 'Node.js', 'Socket.IO'],
-    links: undefined,
+    title: 'UAS NMIMS Team website',
+    description: 'Designed and developed my first ever react website for my team.',
+    tags: ['React', 'Typescript', 'Javascript'],
+    links: {live:'https://www.uasnmims.com' },
   },
   {
     year: '2025',
-    title: 'Project Beta',
-    description: 'An e-commerce platform with a custom CMS and payment integration.',
-    tags: ['Next.js', 'PostgreSQL', 'Stripe'],
-    links: undefined,
+    title: 'Eka Gifts website',
+    description: 'An e-commerce platform for gifting services and solutions with backend and payment integration.',
+    tags: ['React', 'TypeScript', 'Node.js', 'MongoDB', 'Express'],
+    links: { live: 'https://www.ekagifts.com' },
   },
 
   // ── 2026 ──
-  // add here when ready
+  {
+    year: '2026',
+    title: 'Team Management Software Eka Gifts',
+    description: 'A team management and task assessment software to track tasks and meetings. ',
+    tags: ['React', 'TypeScript', 'Firebase', 'API Integration'],
+    links:{ live: 'https://manage.ekagifts.com' },
+  },
+
+    {
+    year: '2026',
+    title: 'Team Management Software for a customer',
+    description: 'A team management and task assessment software to track tasks and meetings. ',
+    tags: ['React', 'TypeScript', 'Firebase', 'API Integration'],
+    links:{ live: 'https://manage.ppcwithprachi.com' },
+  },
 ]
 
 export const socialLinks: SocialLink[] = [
-  { label: 'GitHub',   href: 'https://github.com/ADT1123' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/aditya-thukral-036059215' },
-  { label: 'Email',    href: 'mailto:adityathukral23@gmail.com' },
+  { label: 'GitHub',    href: 'https://github.com/ADT1123' },
+  { label: 'LinkedIn',  href: 'https://www.linkedin.com/in/aditya-thukral-036059215' },
+  { label: 'Email',     href: 'mailto:adityathukral23@gmail.com' },
   { label: 'Instagram', href: 'https://www.instagram.com/adityathukral011/' },
-  { label: 'Discord',   href: 'https://discord.com/users/visual_north_1' },  
+  { label: 'Discord',   href: 'https://discord.com/users/visual_north_1' },
 ]

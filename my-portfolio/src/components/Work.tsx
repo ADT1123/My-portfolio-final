@@ -132,11 +132,11 @@ export default function Work(): JSX.Element {
   const poleRef       = useRef<(HTMLDivElement | null)[]>([])
   const scrollerRef   = useRef<Element | null>(null)
 
-  const [charFrame, setCharFrame] = useState<0 | 1>(0)
+  const [charFrame, setCharFrame]   = useState<0 | 1>(0)
   const [scrollProg, setScrollProg] = useState(0)
   const unlockedRef = useRef(false)
-  const [unlocked, setUnlocked] = useState(false)
-  const frameTimer = useRef<ReturnType<typeof setInterval> | null>(null)
+  const [unlocked, setUnlocked]     = useState(false)
+  const frameTimer  = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const startWalk = () => {
     if (frameTimer.current) return
@@ -152,18 +152,9 @@ export default function Work(): JSX.Element {
     scrollerRef.current = el ?? null
   }, [])
 
-  // ── THE REAL FIX ──────────────────────────────────────
-  // Instead of intercepting wheel events on scroll area (which breaks page scroll),
-  // we use pointer-events: none on the scroll area when locked.
-  // The section itself gets the wheel event → bubbles to scroller → GSAP works.
-  // When unlocked → pointer-events: auto → user can scroll freely.
-  // Auto-scroll is done purely via scrollAreaRef.current.scrollTo() in GSAP callbacks.
-  // ──────────────────────────────────────────────────────
-
   useEffect(() => {
-    const scroller = scrollerRef.current ?? window
-    const total    = ALL_YEARS.length
-
+    const scroller   = scrollerRef.current ?? window
+    const total      = ALL_YEARS.length
     const TITLE_SCROLL = 70
     const PER_YEAR     = 110
     const totalScroll  = TITLE_SCROLL + total * PER_YEAR
@@ -226,27 +217,24 @@ export default function Work(): JSX.Element {
 
         const groupEl = cardGroupRef.current[i]
         if (groupEl) {
-          master.fromTo(groupEl,
-            { opacity: 0, y: 8 },
-            {
-              opacity: 1, y: 0, ease: 'power2.out', duration: 0.04,
-              onStart: () => {
-                // programmatic scroll — no user event needed, works regardless of pointer-events
-                const area = scrollAreaRef.current
-                if (!area) return
-                area.scrollTo({ top: Math.max(0, groupEl.offsetTop - 60), behavior: 'smooth' })
-              },
+          // ✅ FIX: gsap.set + to instead of fromTo — prevents blank on scroll up
+          gsap.set(groupEl, { opacity: 0, y: 8 })
+          master.to(groupEl, {
+            opacity: 1, y: 0, ease: 'power2.out', duration: 0.04,
+            onStart: () => {
+              const area = scrollAreaRef.current
+              if (!area) return
+              area.scrollTo({ top: Math.max(0, groupEl.offsetTop - 60), behavior: 'smooth' })
             },
-            arriveAt
-          )
+          }, arriveAt)
 
           const cards = groupEl.querySelectorAll('.wk-card')
           if (cards.length) {
-            master.fromTo(cards,
-              { opacity: 0, y: 5 },
-              { opacity: 1, y: 0, ease: 'power2.out', duration: 0.03, stagger: 0.01 },
-              arriveAt + 0.01
-            )
+            // ✅ FIX: gsap.set + to instead of fromTo
+            gsap.set(cards, { opacity: 0, y: 5 })
+            master.to(cards, {
+              opacity: 1, y: 0, ease: 'power2.out', duration: 0.03, stagger: 0.01,
+            }, arriveAt + 0.01)
           }
         }
       })
@@ -284,13 +272,6 @@ export default function Work(): JSX.Element {
           flex-shrink:0;
         }
 
-        /*
-          ── THE KEY CSS FIX ──
-          overflow-y: auto so DOM can scroll (needed for .scrollTo())
-          pointer-events: none by default → wheel events fall through
-            to the section/page → GSAP ScrollTrigger gets them → page scrolls
-          pointer-events: auto only after unlocked → user can scroll freely
-        */
         .wk-scroll-area {
           flex: 1;
           overflow-y: auto;
@@ -326,15 +307,15 @@ export default function Work(): JSX.Element {
         }
         .wk-card:hover { background:#0d0d0d; padding-left:0.6rem; }
 
-        .wk-card-num  { font-family:monospace; font-size:10px; color:#1e1e1e; flex-shrink:0; padding-top:3px; min-width:22px; }
-        .wk-card-body { flex:1; min-width:0; }
+        .wk-card-num   { font-family:monospace; font-size:10px; color:#333333; flex-shrink:0; padding-top:3px; min-width:22px; }
+        .wk-card-body  { flex:1; min-width:0; }
         .wk-card-title { font-size:clamp(0.82rem,1.7vw,1.05rem); font-weight:600; color:#fff; margin:0 0 0.28rem 0; word-break:break-word; }
-        .wk-card-desc  { font-size:clamp(0.66rem,1.2vw,0.78rem); color:#424242; line-height:1.65; margin:0 0 0.6rem 0; }
+        .wk-card-desc  { font-size:clamp(0.66rem,1.2vw,0.78rem); color:#6a6a6a; line-height:1.65; margin:0 0 0.6rem 0; }
         .wk-card-tags  { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:0.55rem; }
-        .wk-card-tag   { font-family:monospace; font-size:9px; color:#303030; border:1px solid #191919; padding:2px 7px; white-space:nowrap; letter-spacing:0.06em; }
+        .wk-card-tag   { font-family:monospace; font-size:9px; color:#555555; border:1px solid #191919; padding:2px 7px; white-space:nowrap; letter-spacing:0.06em; }
         .wk-card-links { display:flex; gap:12px; flex-wrap:wrap; }
         .wk-card-link  {
-          font-family:monospace; font-size:10px; color:#505050;
+          font-family:monospace; font-size:10px; color:#707070;
           text-decoration:none; letter-spacing:0.12em; text-transform:uppercase;
           border-bottom:1px solid #202020; padding-bottom:1px;
           transition:color 0.2s,border-color 0.2s;
@@ -344,7 +325,7 @@ export default function Work(): JSX.Element {
         .wk-road {
           flex-shrink:0; position:relative;
           height:clamp(110px,20vh,175px);
-          border-top:1px solid #0e0e0e; overflow:visible;
+          border-top:1px solid #ffffff; overflow:visible;
         }
         .wk-road-dash {
           position:absolute; left:0; right:0; bottom:42px; height:1px;
@@ -396,7 +377,6 @@ export default function Work(): JSX.Element {
             <span style={{ fontFamily:'monospace', fontSize:'10px', color:'#202020', letterSpacing:'0.2em', textTransform:'uppercase' }}></span>
           </div>
 
-          {/* pointer-events:none when locked, auto when unlocked */}
           <div
             ref={scrollAreaRef}
             className={`wk-scroll-area${unlocked ? ' unlocked' : ''}`}
@@ -427,10 +407,10 @@ export default function Work(): JSX.Element {
                   {yearProjects.length === 0 ? (
                     <div style={{
                       fontFamily:'monospace', fontSize:'10px',
-                      color:'#181818', letterSpacing:'0.1em',
+                      color:'#929292', letterSpacing:'0.1em',
                       padding:'0.4rem 0', borderTop:'1px solid #0e0e0e',
                     }}>
-                      // nothing shipped yet.
+                      // nothing shipped.
                     </div>
                   ) : yearProjects.map((project, pi) => (
                     <div key={project.title} className="wk-card">
@@ -439,14 +419,20 @@ export default function Work(): JSX.Element {
                         <h3 className="wk-card-title">{project.title}</h3>
                         <p className="wk-card-desc">{project.description}</p>
                         <div className="wk-card-tags">
-                          {project.tags.map(tag => <span key={tag} className="wk-card-tag">{tag}</span>)}
+                          {project.tags.map(tag => (
+                            <span key={tag} className="wk-card-tag">{tag}</span>
+                          ))}
                         </div>
                         <div className="wk-card-links">
                           {project.links?.live && (
-                            <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="wk-card-link">Live ↗</a>
+                            <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="wk-card-link">
+                              Live ↗
+                            </a>
                           )}
                           {project.links?.github && (
-                            <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="wk-card-link">GitHub ↗</a>
+                            <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="wk-card-link">
+                              GitHub ↗
+                            </a>
                           )}
                         </div>
                       </div>

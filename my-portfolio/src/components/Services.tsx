@@ -6,26 +6,26 @@ const SERVICES = [
   {
     n: '01',
     t: 'Backend Development',
-    d: 'Scalable, clean server-side logic with Node.js. REST APIs, auth systems, and databases.',
-    tag: 'Node.js · Express · REST',
+    d: 'Scalable, clean server-side logic with Node.js. REST APIs, auth systems and databases.',
+    tag: 'Node.js · Express · REST · MongoDB · MySQL',
   },
   {
     n: '02',
     t: 'Frontend Development',
     d: 'Responsive, fast, and clean UIs using React, Next.js. Focused on performance and feel.',
-    tag: 'React · Next.js · HTML/CSS',
+    tag: 'React · Next.js · HTML/CSS · TypeScript · JavaScript',
   },
   {
     n: '03',
     t: 'Full Stack',
     d: 'End-to-end product development — from database schema to deployed UI.',
-    tag: 'Full Stack · End-to-End',
+    tag: 'Full Stack · End-to-End-Deployment',
   },
   {
     n: '04',
     t: 'Freelance Projects',
-    d: 'Available for freelance work. Short-term or long-term — I am open for all.',
-    tag: 'Freelance · Remote',
+    d: 'Available for freelance work and Part-Time roles. Short-term or long-term — I am open for all.',
+    tag: 'Freelance · Remote · Part-Time',
   },
 ]
 
