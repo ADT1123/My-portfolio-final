@@ -10,8 +10,10 @@ const YELLOW = '#f9f97a'
 
 const roles = [
   'Full Stack Developer',
-  'Fast Learner',
+  'Software Developer',
   'Python Programmer',
+  'Frontend Developer',
+  'Backend Developer',
 ]
 
 const TERMINAL_LINES = [
@@ -38,7 +40,7 @@ const GLOBAL_CSS = `
     position: absolute;
     left: 0; bottom: -2px;
     height: 1.5px; width: 0%;
-    background: linear-gradient(90deg, ${YELLOW}, transparent);
+    background: linear-gradient(90deg, ${YELLOW});
     transition: width 0.28s cubic-bezier(0.76,0,0.24,1);
   }
   .nav-link:hover { color: #ffffff !important; }
@@ -55,7 +57,6 @@ const GLOBAL_CSS = `
   .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
   .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-  /* ── Desktop layout ── */
   .hero-inner {
     display: flex;
     flex-direction: row;
@@ -79,7 +80,6 @@ const GLOBAL_CSS = `
     height: 300px;
   }
 
-  /* Desktop title size — controlled by inline clamp */
   .hero-title {
     font-size: clamp(1rem, 3.2vw, 2rem);
   }
@@ -92,7 +92,7 @@ const GLOBAL_CSS = `
   .nav-hamburger     { display: none; }
   .nav-mobile-menu   { display: none; pointer-events: none; }
 
-  /* ── Mobile layout ── */
+  /* ── Mobile ── */
   @media (max-width: 768px) {
     .nav-desktop-links { display: none !important; }
     .nav-cta           { display: none !important; }
@@ -110,7 +110,6 @@ const GLOBAL_CSS = `
       text-align: left;
     }
 
-    /* Name + role — LEFT aligned on mobile */
     .hero-left {
       max-width: 100%;
       width: 100%;
@@ -120,12 +119,11 @@ const GLOBAL_CSS = `
       align-items: flex-start;
     }
 
-    /* ── BIGGER font for "Aditya Thukral." on mobile ── */
     .hero-title {
-      font-size: clamp(1.6rem, 7vw, 2.6rem) !important;
+      font-size: clamp(1rem, 5.5vw, 1.6rem) !important;
     }
 
-    /* Terminal — full width, LEFT aligned */
+
     .hero-terminal {
       width: 100%;
       max-width: 100%;
@@ -133,7 +131,6 @@ const GLOBAL_CSS = `
       flex: none;
     }
 
-    /* SCROLL — hide desktop, show mobile below terminal */
     .hero-scroll-desktop { display: none !important; }
     .hero-scroll-mobile  {
       display: flex !important;
@@ -141,6 +138,11 @@ const GLOBAL_CSS = `
       justify-content: flex-start;
       gap: 12px;
       width: 100%;
+    }
+
+    /* ── FIX 1: About section bigger font on mobile ── */
+    .about-line {
+      font-size: clamp(0.55rem, 3.2vw, 0.85rem) !important;
     }
   }
 `
@@ -176,15 +178,16 @@ function AboutContent(): JSX.Element {
   }, [])
   return (
     <div ref={ref} style={{ maxWidth: '680px', width: '100%', padding: '0 clamp(1rem, 4vw, 2rem)', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-      <p data-line style={{ fontFamily: '"Press Start 2P", monospace', fontSize: 'clamp(0.6rem, 1.6vw, 1.1rem)', color: '#fff', lineHeight: 2, margin: 0 }}>
+      {/* FIX 2: added className="about-line" to each <p> for mobile font override */}
+      <p data-line className="about-line" style={{ fontFamily: '"Press Start 2P", monospace', fontSize: 'clamp(0.6rem, 1.6vw, 1.1rem)', color: '#fff', lineHeight: 2, margin: 0 }}>
         I&apos;m <Squiggle>Aditya</Squiggle> — an{' '}
         <Squiggle>Aspiring Software Developer</Squiggle> focused on building
       </p>
-      <p data-line style={{ fontFamily: '"Press Start 2P", monospace', fontSize: 'clamp(0.6rem, 1.6vw, 1.1rem)', color: '#fff', lineHeight: 2, margin: 0 }}>
+      <p data-line className="about-line" style={{ fontFamily: '"Press Start 2P", monospace', fontSize: 'clamp(0.6rem, 1.6vw, 1.1rem)', color: '#fff', lineHeight: 2, margin: 0 }}>
         <Squiggle>well engineered products</Squiggle>, that actually{' '}
         <Squiggle>work.</Squiggle>
       </p>
-      <p data-line style={{ fontFamily: '"Press Start 2P", monospace', fontSize: 'clamp(0.6rem, 1.6vw, 1.1rem)', color: '#fff', lineHeight: 2, margin: 0 }}>
+      <p data-line className="about-line" style={{ fontFamily: '"Press Start 2P", monospace', fontSize: 'clamp(0.6rem, 1.6vw, 1.1rem)', color: '#fff', lineHeight: 2, margin: 0 }}>
         Passionate about <Squiggle>software engineering</Squiggle> and building things that matter.
       </p>
       <div data-line style={{ width: '100%', height: 1, background: '#1a1a1a', margin: '1.2rem 0' }} />
@@ -214,6 +217,12 @@ function Navbar(): JSX.Element {
     return () => window.removeEventListener('resize', onResize)
   }, [])
 
+  // FIX 3: lock body scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
+
   return (
     <>
       <nav style={{
@@ -228,22 +237,28 @@ function Navbar(): JSX.Element {
         <span style={{ fontFamily: '"Press Start 2P", monospace', fontSize: '0.95rem', color: '#fff', letterSpacing: '0.08em', userSelect: 'none', flexShrink: 0 }}>
           AT<span style={{ color: YELLOW }}>.</span>
         </span>
+
         <div className="nav-desktop-links" style={{ alignItems: 'center', gap: '2.5rem' }}>
           {links.map(l => (
-            <a key={l} href={`#${l.toLowerCase()}`} className="nav-link" style={{ fontFamily: 'monospace', fontSize: '11px', color: '#666', textDecoration: 'none', letterSpacing: '0.2em', textTransform: 'uppercase', paddingBottom: '2px' }}>
+            <a key={l} href={`#${l.toLowerCase()}`} className="nav-link"
+              style={{ fontFamily: 'monospace', fontSize: '11px', color: '#fff', textDecoration: 'none', letterSpacing: '0.2em', textTransform: 'uppercase', paddingBottom: '2px' }}>
               {l}
             </a>
           ))}
         </div>
+
+        {/* FIX 4: hamburger must be zIndex 102 so it sits above the open menu */}
         <button
           className={`nav-hamburger hamburger${menuOpen ? ' open' : ''}`}
           onClick={() => setMenuOpen(p => !p)}
-          style={{ background: 'none', border: 'none', cursor: 'pointer', flexDirection: 'column', gap: '5px', padding: '4px', zIndex: 101 }}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', flexDirection: 'column', gap: '5px', padding: '4px', zIndex: 102 }}
           aria-label="Toggle menu"
         >
           <span /><span /><span />
         </button>
       </nav>
+
+      {/* FIX 5: mobile menu now actually contains the links */}
       <div className="nav-mobile-menu" style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 99,
         background: 'rgba(5,5,5,0.98)', backdropFilter: 'blur(16px)',
@@ -252,7 +267,33 @@ function Navbar(): JSX.Element {
         transform: menuOpen ? 'translateY(0)' : 'translateY(-110%)',
         transition: 'transform 0.35s cubic-bezier(0.76,0,0.24,1)',
         pointerEvents: menuOpen ? 'all' : 'none',
-      }} />
+      }}>
+        {links.map((l, i) => (
+          <a
+            key={l}
+            href={`#${l.toLowerCase()}`}
+            onClick={() => setMenuOpen(false)}
+            style={{
+              fontFamily: 'monospace',
+              fontSize: '13px',
+              color: '#666',
+              textDecoration: 'none',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              padding: '14px 0',
+              borderBottom: i < links.length - 1 ? '1px solid #111' : 'none',
+              transition: 'color 0.2s ease',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+            onMouseLeave={e => (e.currentTarget.style.color = '#666')}
+          >
+            <span style={{ color: YELLOW, marginRight: '12px', fontSize: '10px' }}>
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            {l}
+          </a>
+        ))}
+      </div>
     </>
   )
 }
@@ -288,7 +329,7 @@ function LiveTerminal(): JSX.Element {
           <span key={c} style={{ width: 10, height: 10, borderRadius: '50%', background: c, display: 'inline-block', flexShrink: 0 }} />
         ))}
         <span style={{ color: YELLOW, fontSize: 11, marginLeft: 8, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-          Aditya @ my-code-works ~ trust 💀 ~
+          website got no bugs ~ trust 💀 ~
         </span>
       </div>
       <div style={{ padding: '14px', flex: 1, overflowY: 'auto', overflowX: 'hidden' }}>
@@ -369,7 +410,7 @@ function ScrambleTitle(): JSX.Element {
   return (
     <h1
       ref={ref}
-      className="hero-title"   /* ← class added for mobile font override */
+      className="hero-title"
       onMouseEnter={handleHover}
       style={{
         fontFamily: '"Press Start 2P", monospace',
@@ -395,9 +436,9 @@ function ScrambleTitle(): JSX.Element {
 function ScrollIndicator({ className }: { className: string }): JSX.Element {
   return (
     <div className={className}>
-      <div style={{ width: 28, height: 1, background: '#333', flexShrink: 0 }} />
-      <span style={{ fontFamily: 'monospace', fontSize: '10px', color: '#444', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
-        SCROLL
+      <div style={{ width: 28, height: 1, background: '#b8b8b8', flexShrink: 0 }} />
+      <span style={{ fontFamily: 'monospace', fontSize: '10px', color: '#b8b8b8', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+        SCROLL DOWN
       </span>
     </div>
   )
