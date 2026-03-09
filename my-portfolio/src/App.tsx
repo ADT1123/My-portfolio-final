@@ -6,7 +6,6 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Preloader from './components/Preloader'
 import { useState, type JSX } from 'react'
-import CustomScrollbar from './CustomScrollbar.tsx'
 import TypeBlaster from './components/TypeBlaster'
 
 
