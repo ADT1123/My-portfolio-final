@@ -426,12 +426,12 @@ export default function Work(): JSX.Element {
                         <div className="wk-card-links">
                           {project.links?.live && (
                             <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="wk-card-link">
-                              Live ↗
+                              Live 
                             </a>
                           )}
                           {project.links?.github && (
                             <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="wk-card-link">
-                              GitHub ↗
+                              GitHub 
                             </a>
                           )}
                         </div>
