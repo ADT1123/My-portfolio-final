@@ -46,7 +46,7 @@ export const projects: Project[] = [
   // ── 2021 ──
   {
     year: '2021',
-    title: 'Personal Virtual Assistant - Jarvis (ikik I am Tony Stark)',
+    title: 'Personal Virtual Assistant - Jarvis',
     description: 'My first real project — a simple personal virtual assistant which does basic tasks.',
     tags: ['Python'],
     links: { github: 'https://github.com/ADT1123/jarvis.py' },
