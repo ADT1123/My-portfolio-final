@@ -9,7 +9,7 @@ export default function Footer(): JSX.Element {
         © {year} Aditya Thukral. All rights reserved.
       </span>
       <span className="font-mono text-[0.65rem] md:text-[0.7rem] text-[#555555] tracking-[0.25em] uppercase">
-        If you find a bug, its a feature, trust 💀
+        Hope you liked it!
       </span>
     </footer>
   )

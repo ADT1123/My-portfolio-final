@@ -193,7 +193,7 @@ function AboutContent(): JSX.Element {
       <div data-line style={{ width: '100%', height: 1, background: '#1a1a1a', margin: '1.2rem 0' }} />
       <p data-line style={{ fontFamily: 'monospace', fontSize: '0.72rem', color: '#c0c0c0', lineHeight: 1.8, margin: 0, letterSpacing: '0.04em' }}>
         // git commit -m{' '}
-        <span style={{ color: '#ebff92' }}>&apos;Am Built Different&apos;</span>. No cap.
+        <span style={{ color: '#ebff92' }}>&apos;Trying to build something different&apos;</span>.
       </p>
     </div>
   )
@@ -329,7 +329,7 @@ function LiveTerminal(): JSX.Element {
           <span key={c} style={{ width: 10, height: 10, borderRadius: '50%', background: c, display: 'inline-block', flexShrink: 0 }} />
         ))}
         <span style={{ color: YELLOW, fontSize: 11, marginLeft: 8, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-          website got no bugs ~ trust 💀 ~
+          portfolio@Aditya-Thukral ~
         </span>
       </div>
       <div style={{ padding: '14px', flex: 1, overflowY: 'auto', overflowX: 'hidden' }}>
